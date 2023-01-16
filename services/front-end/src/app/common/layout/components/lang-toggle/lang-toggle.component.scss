@@ -1,0 +1,13 @@
+.langToggle {
+  button {
+    text-align: center;
+    span {color: var(--color-white);}
+  }
+}
+
+.langToggle .langToggle__currentLang {
+  pointer-events: none;
+  span {
+    color: var(--color-neutral-variant-1);
+  }
+}

@@ -1,0 +1,15 @@
+<div class="langToggle">
+  <button
+      mat-button
+      [class]="currentLang == 'es' ? 'langToggle__currentLang' : ''"
+      (click)="setLocalLanguage('es')">
+    <span>Español</span>
+  </button>
+  /
+  <button
+      mat-button
+      [class]="currentLang == 'en' ? 'langToggle__currentLang' : ''"
+      (click)="setLocalLanguage('en')">
+    <span>English</span>
+  </button>
+</div>
