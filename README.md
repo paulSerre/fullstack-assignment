@@ -13,7 +13,7 @@ eCommerce.
 New features usually involves three different tasks:
 1. Implementing an interface to configure the user's preferences.
 2. Implementing API endpoints to retrieve data such as result examples.
-3. Implementing asyncronous tasks that apply the changes to our clients' stores.
+3. Implementing asynchronous tasks that apply the changes to our clients' stores.
 
 This is the workflow that we tried to replicate in this task.
 
