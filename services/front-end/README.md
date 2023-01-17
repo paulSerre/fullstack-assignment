@@ -1,6 +1,6 @@
-<img src="https://user-images.githubusercontent.com/28607713/139576077-5c322bfa-d71b-414b-9b63-ff4c53ec9a8d.png"
+<img src="https://user-images.githubusercontent.com/28607713/212879228-3ca54e74-ee8f-485c-a5d2-e54758b471dc.png"
      alt="planet-logo-white-no-bg"
-     width="120">
+     width="240">
 
 # Planet fullstack-assignment - Front-end project
 Full-Stack position skill assessment home assignment.
