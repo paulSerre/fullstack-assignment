@@ -85,13 +85,13 @@ The workflow that the system should support is:
 #### What we will evaluate
 
 
-### 3. Interface to list followed
+### 3. Interface to list followed currencies
 #### What we want
 We provide you with three basic endpoints for subscribing, unsubscribing and listing the subscriptions
 to different currencies:
 
-- [POST] /api/currency` Subscribe new currency
-- [PUT] /api/currency/:code` Unsubscribe currency
+- `[POST] /api/currency` Subscribe new currency
+- `[PUT] /api/currency/:code` Unsubscribe currency
 - [GET] /api/currency` Get subscribed currency codes
 
 We want a view that lists the subscribed currencies along with their forex data, and that allows to
