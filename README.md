@@ -81,13 +81,20 @@ The workflow that the system should support is:
 ## Tasks
 ### 1. Forex data retrieval
 #### What we want
+The candidate should be able to create a Service that periodically fetches from the Forex API provided of the subscribed currencies and persist on database in order to have a register of how currencies's values change along time.
 #### What we will evaluate
-
+* The way the candidates organizes code and looks for a neat and optimized environment.
+* How the candidate models the domain in order to handle more types of data sources.
 
 ### 2. API endpoint for retrieving the fetched forex data
 #### What we want
+Using the provided architecture in the API, we hope the candidate to implement a new endpoint (`[GET] /api/currency/:code/history` _could be an option_) that retrieves the temporary information of each currency (based on the currency code) collected by the service that communicates with the Forex API.
 #### What we will evaluate
+* How the candidate adapts to the provided architecture and environment
+* The use good plractices as design patterns, SOLID principles, domain-driven development, testing... would give you points against other candidates!
+* At this point a clean and readable code is essencial to work in a team where every code is shared, so we'll also take a look for this!
 
+PD: Feel completely free to add/update any feature given as long as it makes sense in the proposed domain.
 
 ### 3. Interface to list followed currencies
 #### What we want
