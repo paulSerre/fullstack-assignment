@@ -39,7 +39,7 @@ The code is organized as follows:
 
 - `services`
      - \ `api` - A NodeJS project with ExpressJS, TypeScript and Mongoose to implement the API.
-     - \ `front-end` - An Angular project with TypeScript, SCSS, Material and NgRX to implement the web app.
+     - \ `front-end` - An Angular project with TypeScript, SCSS, Material and NgRX to implement the web app. Implementation details can be found in `services/front-end/README.md`.
      - \ `service` - A NodeJS-based service with TypeScript and Mongoose that is setup to run periodically in order to implement asynchronous tasks.
 - `docker-compose.slim.yml` - 
 - `docker-compose.yml` - 
@@ -64,11 +64,14 @@ prices from the currencies the API user wants to EUR. With this in mind we need 
 an API for adding, removing and listing the currencies that are being followed at the moment, and an
 additional endpoint for retrieving such historic data.
 
+We already provide the endpoints for managing subscriptions so you can focus on the use case of fetching,
+saving and showing historical data.
+
 The workflow that the system should support is:
 1. The API user adds or removes currencies from the followed ones, by the currency code.
 2. The API user is able to see the followed currencies using the corresponding endpoint
 3. The system, periodically, fetches the stock exchange price from each followed currency to Euros (EUR).
-4. The API user can retrieve the historical data for a subset of the followed currencies, which
+4. The user can see the historical data for the followed currencies, which
      includes basic data such as ask, bid, and spread; and additional calculated stats.
 
 > We recommend using the [alphavantage API](https://www.alphavantage.co/) for retrieving the data as
