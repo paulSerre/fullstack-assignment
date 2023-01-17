@@ -51,10 +51,10 @@ The code is organized as follows:
 - `LICENSE`
 
 
-Disclaimer: The purpose and usage of this repo is solely for insight adquisition regarding problem-solving,
+Disclaimer: The purpose and usage of this repo is solely for insight acquisition regarding problem-solving,
 and does not represent an existing and ongoing implementation task.
 
-PS: We provide this structure as an starting point but you may discard it and approach the task in
+PS: We provide this structure as a starting point but you may discard it and approach the task in
 any other way.
 
 ## The problem
@@ -75,10 +75,33 @@ The workflow that the system should support is:
 > _See the docs: [https://www.alphavantage.co/documentation/#crypto-exchange](https://www.alphavantage.co/documentation/#crypto-exchange)_
 
 ## Tasks
+### 1. Forex data retrieval
+#### What we want
+#### What we will evaluate
 
 
-## Evaluation
+### 2. API endpoint for retrieving the fetched forex data
+#### What we want
+#### What we will evaluate
 
+
+### 3. Interface to list followed
+#### What we want
+We provide you with three basic endpoints for subscribing, unsubscribing and listing the subscriptions
+to different currencies:
+
+- [POST] /api/currency` Subscribe new currency
+- [PUT] /api/currency/:code` Unsubscribe currency
+- [GET] /api/currency` Get subscribed currency codes
+
+We want a view that lists the subscribed currencies along with their forex data, and that allows to
+add or remove subscriptions. Here is a mockup of it could look, although you are free to design it
+however you feel it works best.
+
+![image](https://user-images.githubusercontent.com/28607713/212859859-462fe5b8-e05f-4332-a5ee-098500a78418.png)
+
+
+#### What we will evaluate
 
 ## How to run the services
 We provide you with Makefile rules for you to lift individual services:
