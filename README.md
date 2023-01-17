@@ -54,7 +54,7 @@ The code is organized as follows:
 Disclaimer: The purpose and usage of this repo is solely for insight adquisition regarding problem-solving,
 and does not represent an existing and ongoing implementation task.
 
-PD: We provide this structure as an starting point but you may discard it and approach the task in
+PS: We provide this structure as an starting point but you may discard it and approach the task in
 any other way.
 
 ## The problem
