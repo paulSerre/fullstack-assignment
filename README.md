@@ -94,7 +94,10 @@ asynchronous code for this task. The code can be found at `services/service`.
 
 ### 2. API endpoint for retrieving the fetched forex data
 #### What we want
-Using the provided architecture in the API, we hope the candidate to implement a new endpoint (`[GET] /api/currency/:code/history` _could be an option_) that retrieves the temporary information of each currency (based on the currency code) collected by the service that communicates with the Forex API.
+We hope the candidate to implement an API endpoint to retrieve the historical data for currently followed currencies (`/api/currency/:code/history` or
+`/api/forex/history` _could be valid options_) 
+
+We already provide you with a working API at `services/api` where you could add your endpoint.
 #### What we will evaluate
 * How the candidate adapts to the provided architecture and environment
 * The use good plractices as design patterns, SOLID principles, domain-driven development, testing... would give you points against other candidates!
