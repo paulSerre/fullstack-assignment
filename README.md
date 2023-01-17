@@ -81,13 +81,29 @@ The workflow that the system should support is:
 ## Tasks
 ### 1. Forex data retrieval
 #### What we want
-#### What we will evaluate
+Implement recurrent data retrieval for each of the followed currencies. This data can be obtained
+from external APIs such as the one we propose: [Alphavantage](https://www.alphavantage.co/documentation/#fx-daily).
 
+The data needs to be persisted on database in order to have a register of how currencies's values change along time, so that it can later be fetched from the front-end.
+
+We already provide you with a service that runs periodically and where you could implement any
+asynchronous code for this task. The code can be found at `services/service`.
+#### What we will evaluate
+* The way the candidates organizes code and looks for a neat and optimized environment.
+* How the candidate models the domain in order to handle more types of data sources.
 
 ### 2. API endpoint for retrieving the fetched forex data
 #### What we want
-#### What we will evaluate
+We hope the candidate to implement an API endpoint to retrieve the historical data for currently followed currencies (`/api/currency/:code/history` or
+`/api/forex/history` _could be valid options_) 
 
+We already provide you with a working API at `services/api` where you could add your endpoint.
+#### What we will evaluate
+* How the candidate adapts to the provided architecture and environment
+* The use good plractices as design patterns, SOLID principles, domain-driven development, testing... would give you points against other candidates!
+* At this point a clean and readable code is essencial to work in a team where every code is shared, so we'll also take a look for this!
+
+PD: Feel completely free to add/update any feature given as long as it makes sense in the proposed domain.
 
 ### 3. Interface to list followed currencies
 #### What we want
