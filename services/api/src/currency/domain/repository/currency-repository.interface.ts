@@ -5,5 +5,5 @@ export interface ICurrencyRepository {
   subscribe(currency: Currency): Promise<void>;
   findAllSubscriptions(): Promise<Currency[]>;
   findByCode(code: string): Promise<Nullable<Currency>>;
-  unsubscribe(currency: Currency): Promise<void>;
+  changeSubscription(currency: Currency): Promise<void>;
 }

@@ -14,7 +14,7 @@ export class UnsubscribeCurrency {
     }
 
     currency.unsubscribe();
-    await this.currencyRepository.unsubscribe(currency);
+    await this.currencyRepository.changeSubscription(currency);
     return currency;
   }
 }
