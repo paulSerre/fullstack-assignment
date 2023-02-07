@@ -36,12 +36,8 @@ export class MongooseCurrencyRepository implements ICurrencyRepository {
     return currency === null ? null : this.toDomain(currency);
   }
 
-  async unsubscribe(currency: Currency): Promise<void> {
+  async changeSubscription(currency: Currency): Promise<void> {
     const document = this.fromDomain(currency);
-    await CurrencySchema.updateOne(
-      { _id: currency.id },
-      { $set: document },
-      { upsert: true }
-    );
+    await CurrencySchema.updateOne({ _id: currency.id }, { $set: document });
   }
 }
