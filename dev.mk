@@ -9,7 +9,7 @@ start:
 start-slim:
 	@echo "Starting the development services..."
 	@echo "Run 'make stop' or ${DOCKER_COMPOSE} to stop it."
-	${DOCKER_COMPOSE} up -f docker-compose.slim.yml &
+	${DOCKER_COMPOSE} -f docker-compose.slim.yml up &
 
 stop:
 	${DOCKER_COMPOSE} down
