@@ -26,7 +26,7 @@ export class CurrencyController {
 
   async findAllSubscribedCurrencies(req: Request, res: Response) {
     try {
-      const currencies = await this.getSubscribedCurrencies.execute();
+      const currencies = await this.getSubscribedCurrencies.execute(req.query.history);
       res.status(200).json({ data: currencies });
     } catch (err) {
       let status = 500;

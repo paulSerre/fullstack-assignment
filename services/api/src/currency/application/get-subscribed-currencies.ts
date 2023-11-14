@@ -7,7 +7,7 @@ export class GetSubscribedCurrencies {
     this.currencyRepository = currencyRepository;
   }
 
-  async execute() {
-    return await this.currencyRepository.findAllSubscriptions();
+  async execute(history: boolean = false) {
+    return await this.currencyRepository.findAllSubscriptions(history);
   }
 }
