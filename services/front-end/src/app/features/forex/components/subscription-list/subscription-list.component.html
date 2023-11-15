@@ -27,8 +27,8 @@
                     <div class="card-stock yesterday-block">
                         <div *ngIf="getYesterdayHistory(currency)" class="indicator">
                             Yesterday 
-                            <span [ngClass]="getTodayHistory(currency) >= getYesterdayHistory(currency) ? 'arrow-up' : 'arrow-down'">
-                                {{ getTodayHistory(currency) >= getYesterdayHistory(currency) ? '&#9650;' : '&#9660;' }}
+                            <span [ngClass]="getTodayHistory(currency).high >= getYesterdayHistory(currency).high ? 'arrow-down' : 'arrow-up'">
+                                {{ getTodayHistory(currency).high >= getYesterdayHistory(currency).high ? '&#9660;' : '&#9650;' }}
                             </span>
                         </div>
                         <div class="info-block">
