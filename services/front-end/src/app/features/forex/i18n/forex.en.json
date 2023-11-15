@@ -1,1 +1,19 @@
-{}
+{
+    "landing-page": {
+        "subscription-list": {
+            "currencies": "Currencies",
+            "subscribe": "Subscribe",
+            "following": "Following",
+            "low": "Low",
+            "high": "High",
+            "yesterday": "Yesterday",
+            "stop-following": "Stop following"
+        },
+        "currency-picker-modal": {
+            "currencies": "Currencies",
+            "subscribe-new": "Subscribe to new currencies",
+            "cancel": "Cancel",
+            "confirm": "Confirm"
+        }
+    }
+}

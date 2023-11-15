@@ -1,1 +1,19 @@
-{}
+{
+    "landing-page": {
+        "subscription-list": {
+            "currencies": "Divisas",
+            "subscribe": "Subscribir",
+            "following": "Siguiendo",
+            "low": "Bajo",
+            "high": "Alto",
+            "yesterday": "Ayer",
+            "stop-following": "Dejar de seguir"
+        },
+        "currency-picker-modal": {
+            "currencies": "Divisas",
+            "subscribe-new": "Seguir nueva moneda",
+            "cancel": "Cancelar",
+            "confirm": "Confirmar"
+        }
+    }
+}

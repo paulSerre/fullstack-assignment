@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ForexLandingPageComponent } from './pages/forex-landing-page/forex-landing-page.component';
-import { TRANSLOCO_SCOPE } from '@ngneat/transloco';
+import { TRANSLOCO_SCOPE, TranslocoModule } from '@ngneat/transloco';
 import { RouterModule } from '@angular/router';
 import { routes } from './forex.routing';
 import { SubscriptionListComponent } from 'src/app/features/forex/components/subscription-list/subscription-list.component';
@@ -42,6 +42,7 @@ export const loader = ['en', 'es'].reduce((acc, lang) => {
     FormsModule,
     ReactiveFormsModule,
     MatDialogModule,
+    TranslocoModule,
   ],
   providers: [
     CurrencyService,

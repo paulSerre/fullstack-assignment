@@ -1,8 +1,8 @@
-<mat-card class="currencies-container">
+<mat-card class="currencies-container" *transloco="let t; read: 'forex.landing-page.subscription-list'">
     <mat-card-header>
-        <mat-card-title>Currencies</mat-card-title>
+        <mat-card-title>{{ t('currencies')}}</mat-card-title>
         <button (click)="openDialog()" mat-raised-button color="primary">
-            Subscribe
+            {{ t('subscribe')}}
         </button>
     </mat-card-header>
     <mat-card-content>
@@ -10,40 +10,40 @@
             <div class="currency-list-item">
                 <div class="info-block currency-info">
                     <h3>EUR/{{currency._code}}</h3>
-                    <p>Following</p>
+                    <p>{{ t('following')}}</p>
                 </div>
                 
                 <div class="stock">
                     <div class="card-stock">
                         <div class="info-block">
                             <h3>{{getTodayHistory(currency)?.low ?? '-'}}</h3>
-                            <p>Low</p>
+                            <p>{{ t('low') }}</p>
                         </div>
                         <div class="info-block">
                             <h3>{{getTodayHistory(currency)?.high ?? '-'}}</h3>
-                            <p>High</p>
+                            <p>{{ t('high') }}</p>
                         </div>
                     </div>
                     <div class="card-stock yesterday-block">
                         <div *ngIf="getYesterdayHistory(currency)" class="indicator">
-                            Yesterday 
+                            {{ t('yesterday') }} 
                             <span [ngClass]="getTodayHistory(currency).high >= getYesterdayHistory(currency).high ? 'arrow-down' : 'arrow-up'">
                                 {{ getTodayHistory(currency).high >= getYesterdayHistory(currency).high ? '&#9660;' : '&#9650;' }}
                             </span>
                         </div>
                         <div class="info-block">
                             <h3>{{getYesterdayHistory(currency)?.low ?? '-'}}</h3>
-                            <p>Low</p>
+                            <p>{{ t('low') }}</p>
                         </div>
                         <div class="info-block">
                             <h3>{{getYesterdayHistory(currency)?.high ?? '-'}}</h3>
-                            <p>High</p>
+                            <p>{{ t('high') }}</p>
                         </div>
                     </div>
                 </div>
                 <div class="action-buttons">
                     <button mat-raised-button color="warn" (click)="unsubscribeTo(currency._code)">
-                        Stop following
+                        {{ t('stop-following') }}
                     </button>
                 </div>
             </div>
