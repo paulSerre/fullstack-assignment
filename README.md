@@ -4,50 +4,6 @@
 
 
 # Planet fullstack-assignment
-Full-Stack position skill assessment home assignment.
-
-## Overview
-We provide you with a project that has a database, an API, a service that executes periodically
-and a web app.
-
-This project has part of the functionality of fictitious software solution that provides stock exchange data services:
-it allows the user of the web app to subscribe to currencies, and see the current exchange prices of those he/she
-whishes to follow.
-
-You are responsible of finishing the app by implementing:
-- The code that executes periodically and fetches the forex data.
-- The code for the API endpoint that sends that data to the front-end.
-- The front-end code to see and edit the list of currencies currently followed, along with their stock prices.
-
-## About this repository
-This repository holds the basic project structure for implementing a NodeJS based API and service,
-and an Angular web app.
-
-The code is organized as follows:
-
-- `services`
-     - \ `api` - A NodeJS project with ExpressJS, TypeScript and Mongoose to implement the API.
-     - \ `front-end` - An Angular project with TypeScript, SCSS, Material and NgRX to implement the web app. Implementation details can be found in `services/front-end/README.md`.
-     - \ `service` - A NodeJS-based service with TypeScript and Mongoose that is setup to run periodically in order to implement asynchronous tasks.
-- `docker-compose.slim.yml` - 
-- `docker-compose.yml` - 
-- `dump` - 
-- `Makefile` - Makefile for your ease of development, see below
-- `frontend.mk` - Makefile rules for the web app.
-- `backend.mk` - Makefile rules for the API.
-- `service.mk` - Makefile rules for the asynchronous task.
-- `db.mk` - Makefile rules for the database.
-- `dev.mk` - Makefile rules with PHONY targets for easier development.
-- `README.md` - This file.
-- `LICENSE`
-
-
-Disclaimer: The purpose and usage of this repo is solely for insight acquisition regarding problem-solving,
-and does not represent an existing and ongoing implementation task.
-
-PS: We provide this structure as a starting point but you may discard it and approach the task in
-any other way.
-
 ## Tasks
 ### 1. Forex data retrieval
 #### Considerations
@@ -61,8 +17,8 @@ Deleting a time series point will not remove the relation from a currency becaus
 
 ### 2. API endpoint for retrieving the fetched forex data
 #### Implementation choices
-Time series points are modeled as a relation of currencies. Given the requirement to return only subscribed currencies, I chose to use the existing endpoint `[GET] /api/currencies` with an additional `history`` query parameter to include or exclude historical points of subscribed currencies.
-
+Time series points are modeled as a relation of currencies. Given the requirement to return only subscribed currencies, I chose to use the existing endpoint `[GET] /api/currencies` with an additional `history` query parameter to include or exclude historical points of subscribed currencies.
+To provide immediate access to data upon subscription, I modified the `[PUT] /api/currency/:code` endpoint to also return data points.
 
 ### 3. Interface to list followed currencies
 #### Implementation choices
@@ -71,5 +27,15 @@ Even though currency data is only relevant to a single component and does not ne
 ### 4. Caveats and possible improvements
 #### Caveats
 - If a currency has never been subscribed to before a user subscribes to it, the user will have to wait for a cron job to run before seeing currency values.
-- The FOREX API has a call rate limit, so a lower frequency for the cron job should be considered.
 - The FOREX API does not have an endpoint to return supported currencies, which means you might subscribe to a currency that will never have data.
+- The FOREX API has a call rate limit, so a lower frequency for the cron job should be considered.
+
+#### Improvements
+- To prevent the user from subscribing to currencies that do not yet have data, several methods could be implemented:
+1. Allow the user to subscribe only to currencies that are in database.
+2. Transform the service into a microservice that listens for events from a queue. This queue would receive two types of events: 'newCurrencyAdded' and 'timeElapsed'. These events would be sent to the queue, for instance, from the API, and would contain a payload with an array of currency codes. The event handlers would take care of fetching the new data for these currency codes.
+- To prevent the user from subscribing to unsupported currencies we could:
+1. Allow the user to subscribe only to currencies that are in database. (See 1. above)
+2. Use a queue to reschedule events. (See 2. above)
+3. Choose a better API than forex.
+- Improve responsiveness
