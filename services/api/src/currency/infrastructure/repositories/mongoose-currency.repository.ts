@@ -37,7 +37,7 @@ export class MongooseCurrencyRepository implements ICurrencyRepository {
   }
 
   async findByCode(code: string): Promise<Nullable<Currency>> {
-    const currency = await CurrencyModel.findOne({ code: code });
+    const currency = await CurrencyModel.findOne({ code: code }).populate('history');
     return currency === null ? null : this.toDomain(currency);
   }
 

@@ -17,13 +17,14 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { routerReducer, StoreRouterConnectingModule } from '@ngrx/router-store';
 import { LayoutModule } from './common/layout/layout.module';
+import { ForexModule } from './features/forex/forex.module';
 
 registerLocaleData(localeEs, 'es');
 registerLocaleData(localeEn, 'en');
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     AppRoutingModule,
@@ -42,6 +43,7 @@ registerLocaleData(localeEn, 'en');
     StoreRouterConnectingModule.forRoot(),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
     LayoutModule,
+    ForexModule,
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'es' },

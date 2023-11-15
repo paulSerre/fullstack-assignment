@@ -1,0 +1,53 @@
+.currencies-container {
+    display: block;
+    margin: 20px;
+    padding: 20px;
+    .currency-list-item {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px; // Adjust as needed
+        .card-stock {
+            mat-card-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                .arrow-up {
+                    color: green; 
+                }
+            }
+            mat-card-content {
+                display: flex;
+                justify-content: space-between;
+                border-radius: 5px;
+                border-width: 1px;
+                .value-container {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    &:first-child {
+                        margin-right: 20px; // Vous pouvez ajuster cette valeur comme vous le souhaitez
+                    }
+                    .value {
+                        font-size: 1.5em;
+                    }
+                    .label {
+                        margin-top: 4px;
+                    }
+                }
+            }
+        }
+        .history-details {
+            flex-basis: 100%;
+            padding-left: 20px; // Align text with the card content above
+        }
+    }
+}
+
+mat-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+

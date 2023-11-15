@@ -1,0 +1,51 @@
+<mat-card class="currencies-container">
+    <mat-card-header>
+        <mat-card-title>Currencies</mat-card-title>
+        <button (click)="openDialog()" mat-raised-button color="primary">
+            Subscribe
+        </button>
+    </mat-card-header>
+    <mat-card-content>
+        <div class="currency-list" *ngFor="let currency of currencies">
+            <div class="currency-list-item">
+                <div class="currency-details">
+                    <h2>EUR/{{currency._code}}</h2>
+                    <p>Following</p>
+                </div>
+                <mat-card *ngIf="getTodayHistory(currency) as todayHistory" class="card-stock" >
+                    <mat-card-header>
+                    </mat-card-header>
+                    <mat-card-content>
+                        <div class="value-container">
+                            <div class="value">{{todayHistory.low}}</div>
+                            <div class="label">Low</div>
+                        </div>
+                        <div class="value-container">
+                            <div class="value">{{todayHistory.high}}</div>
+                            <div class="label">High</div>
+                        </div>
+                    </mat-card-content>
+                </mat-card>
+                <mat-card *ngIf="getYesterdayHistory(currency) as yesterdayHistory" class="card-stock" >
+                    <mat-card-header>
+                    </mat-card-header>
+                    <mat-card-content>
+                        <div class="value-container">
+                            <div class="value">{{yesterdayHistory.low}}</div>
+                            <div class="label">Low</div>
+                        </div>
+                        <div class="value-container">
+                            <div class="value">{{yesterdayHistory.high}}</div>
+                            <div class="label">High</div>
+                        </div>
+                    </mat-card-content>
+                </mat-card>
+                <div class="action-buttons">
+                    <button mat-raised-button color="warn" (click)="unsubscribeTo(currency._code)">
+                        Stop following
+                    </button>
+                </div>
+            </div>
+        </div>
+    </mat-card-content>
+</mat-card>
