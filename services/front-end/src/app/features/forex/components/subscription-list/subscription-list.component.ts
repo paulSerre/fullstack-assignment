@@ -24,11 +24,14 @@ export class SubscriptionListComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.subscription = this.currencyService.currenciesSubject.subscribe({
-      next: (value) => this.currencies = value,
+      next: (value) => {
+        this.currencies = value;
+        console.log(value);
+      },
       error: console.error,
       complete: console.info,
     });
-
+    this.currencyService.emitCurrency();
   }
 
   ngOnDestroy(): void {
