@@ -1,46 +1,64 @@
+@use 'theme';
+
 .currencies-container {
-    display: block;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
     margin: 20px;
     padding: 20px;
+    mat-card-title {
+        @include theme.font-h1();
+        margin-bottom: 0
+    }
+    mat-card-content {
+        display: flex;
+        flex-direction: column;
+        gap: 1em;
+        padding: var(--space-small);
+        border-radius: var(--space-small);
+        border: 1px;
+        border: solid;
+        border-color: var(--color-neutral-variant-2);
+    }
+    mat-divider {
+        margin-top: var(--space-small);
+    }
     .currency-list-item {
         display: flex;
         flex-direction: row;
         align-items: center;
-        justify-content: space-between;
-        gap: 10px; // Adjust as needed
-        .card-stock {
-            mat-card-header {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                .arrow-up {
-                    color: green; 
-                }
+        justify-content: space-between; /* Adjust as needed */
+        flex-wrap: wrap; /* Allows multiple lines */
+        .currency-info {
+            min-width: 8rem;
+        }
+        .info-block {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            h3 {
+                @include theme.font-h2();
+                margin-bottom: 0
             }
-            mat-card-content {
-                display: flex;
-                justify-content: space-between;
-                border-radius: 5px;
-                border-width: 1px;
-                .value-container {
-                    display: flex;
-                    flex-direction: column;
-                    align-items: center;
-                    &:first-child {
-                        margin-right: 20px; // Vous pouvez ajuster cette valeur comme vous le souhaitez
-                    }
-                    .value {
-                        font-size: 1.5em;
-                    }
-                    .label {
-                        margin-top: 4px;
-                    }
-                }
+            p {
+                @include theme.font-bold();
+                margin-bottom: 0;
             }
         }
-        .history-details {
-            flex-basis: 100%;
-            padding-left: 20px; // Align text with the card content above
+        .stock {
+            display: flex;
+            flex-direction: row;
+        }
+        .card-stock.yesterday-block {
+            background-color: var(--color-neutral-variant-2);
+            border-radius: var(--space-xsmall);
+        }
+        .card-stock {
+            display: flex;
+            padding: 5px;
+            .info-block {
+                width: 8em;
+            }
         }
     }
 }

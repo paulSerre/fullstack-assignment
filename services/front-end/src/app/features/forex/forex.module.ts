@@ -15,6 +15,7 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import { MatDividerModule } from '@angular/material/divider';
 
 
 export const loader = ['en', 'es'].reduce((acc, lang) => {
@@ -37,6 +38,7 @@ export const loader = ['en', 'es'].reduce((acc, lang) => {
     MatButtonModule,
     MatSelectModule,
     MatFormFieldModule,
+    MatDividerModule,
     FormsModule,
     ReactiveFormsModule,
     MatDialogModule,
