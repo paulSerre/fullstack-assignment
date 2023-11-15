@@ -8,6 +8,7 @@
 ### 1. Forex data retrieval
 #### Considerations
 - An API key should be provided in the Dockerfile to enable API calls. Although I have provided mine, I cannot guarantee its functionality as I could have reach usage limit (Alphavantage).
+- Please subscribe to a currency supported by the forex API.
 
 #### Implementation choices
 Nestpaths are not considered due to the potential for excessive data in documents, depending on timeserie granularity and the application's age. Once a significant number of time series points are reached, considering pagination for historical points will be necessary. Modeling time series points as a relation to currencies simplifies this process.
