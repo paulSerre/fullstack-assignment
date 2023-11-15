@@ -16,6 +16,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 
 export const loader = ['en', 'es'].reduce((acc, lang) => {
@@ -43,6 +44,7 @@ export const loader = ['en', 'es'].reduce((acc, lang) => {
     ReactiveFormsModule,
     MatDialogModule,
     TranslocoModule,
+    MatSnackBarModule,
   ],
   providers: [
     CurrencyService,
