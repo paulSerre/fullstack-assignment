@@ -12,6 +12,7 @@
                     <h3>EUR/{{currency._code}}</h3>
                     <p>Following</p>
                 </div>
+                
                 <div class="stock">
                     <div class="card-stock">
                         <div class="info-block">
@@ -24,6 +25,12 @@
                         </div>
                     </div>
                     <div class="card-stock yesterday-block">
+                        <div *ngIf="getYesterdayHistory(currency)" class="indicator">
+                            Yesterday 
+                            <span [ngClass]="getTodayHistory(currency) >= getYesterdayHistory(currency) ? 'arrow-up' : 'arrow-down'">
+                                {{ getTodayHistory(currency) >= getYesterdayHistory(currency) ? '&#9650;' : '&#9660;' }}
+                            </span>
+                        </div>
                         <div class="info-block">
                             <h3>{{getYesterdayHistory(currency)?.low ?? '-'}}</h3>
                             <p>Low</p>

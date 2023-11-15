@@ -50,8 +50,24 @@
             flex-direction: row;
         }
         .card-stock.yesterday-block {
+            position: relative;
             background-color: var(--color-neutral-variant-2);
             border-radius: var(--space-xsmall);
+
+            .indicator {
+                position: absolute;
+                left: 50%; /* Position X halfway in */
+                transform: translate(-50%,-100%); /* Move it halfway back(x,y) */
+                color: var(--color-primary);
+                font-weight: bold;
+                .arrow-up {
+                    color: var(--color-secondary);
+                }
+                .arrow-down {
+                    transform: rotate(180deg);
+                    color: var(--color-red-variant-1);
+                }
+            }
         }
         .card-stock {
             display: flex;
