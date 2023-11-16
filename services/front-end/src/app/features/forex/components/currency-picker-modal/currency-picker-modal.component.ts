@@ -4,8 +4,8 @@ import {
   MatDialogRef,
 } from '@angular/material/dialog';
 import { CurrencyService } from '../../services/currency.service';
-import { Subscription, find } from 'rxjs';
-import { FormControl } from '@angular/forms';
+import { Subscription, find, tap } from 'rxjs';
+import { FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-currency-picker-modal',
@@ -14,8 +14,11 @@ import { FormControl } from '@angular/forms';
 })
 export class CurrencyPickerModalComponent implements OnInit, OnDestroy {
 
-  selectedCurrency = new FormControl('');
+  selectedCurrency = new FormControl(null, {
+    validators: Validators.required,
+  });
   subscription: Subscription
+  loading: boolean = false;
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public currenciesList: string[],
@@ -28,15 +31,24 @@ export class CurrencyPickerModalComponent implements OnInit, OnDestroy {
   }
   
   ngOnInit(): void {
-    this.subscription = this.currencyService.currenciesSubject.subscribe({
-      next: (currencies) => {
-        if (currencies.some(({ _code }) => _code === this.selectedCurrency.value)) this.onNoClick()
-      },
-    })
+    this.subscription = this.currencyService.currenciesSubject
+      .pipe(
+        tap({
+          next: (currencies) => {
+            if (currencies.some(({ _code }) => _code === this.selectedCurrency.value)) {
+              this.loading = false;
+              this.selectedCurrency.reset()
+              this.onNoClick()
+            }
+          },
+          error: (error) => this.loading = false,
+        })
+      ).subscribe()
   }
 
 
   onSubscribeCurrency() {
+    this.loading = true;
     this.currencyService.subscribeToCurrency(this.selectedCurrency.value);
   }
 

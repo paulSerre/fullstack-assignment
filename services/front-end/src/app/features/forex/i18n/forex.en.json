@@ -13,7 +13,8 @@
             "currencies": "Currencies",
             "subscribe-new": "Subscribe to new currencies",
             "cancel": "Cancel",
-            "confirm": "Confirm"
+            "confirm": "Confirm",
+            "required": "This field is required"
         }
     }
 }

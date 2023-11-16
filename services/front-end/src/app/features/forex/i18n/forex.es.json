@@ -13,7 +13,8 @@
             "currencies": "Divisas",
             "subscribe-new": "Seguir nueva moneda",
             "cancel": "Cancelar",
-            "confirm": "Confirmar"
+            "confirm": "Confirmar",
+            "required": "Este campo es obligatorio"
         }
     }
 }
