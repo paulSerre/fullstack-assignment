@@ -1,11 +1,5 @@
 import { Types } from "mongoose";
-import {
-  CurrencyAlreadySubscribedError,
-  CurrencyNotSubscribedError,
-  IncorrectCurrencyError,
-} from "../errors";
 import { CurrencyHistory } from "./currency-history";
-import ForexError from "@app/utils/external/alphavantage/error";
 
 export class Currency {
   private _id: Types.ObjectId;
@@ -21,22 +15,6 @@ export class Currency {
   }
 
   static fromPrimitives({ id, code, hasSubscription, history }) {
-    return new Currency({
-      id: id,
-      code: code,
-      hasSubscription: hasSubscription,
-      history,
-    });
-  }
-
-  static create({ id = new Types.ObjectId(), code, hasSubscription = true, history }) {
-    if (!code) {
-      return IncorrectCurrencyError.withCode(code);
-    }
-    if (Object.keys(history).length === 0) {
-      return ForexError.withCode(code);
-    }
-
     return new Currency({
       id: id,
       code: code,
@@ -61,18 +39,4 @@ export class Currency {
     return this._history;
   }
 
-  subscribe() {
-    if (this.hasSubscription) {
-      return CurrencyAlreadySubscribedError.withCode(this._code);
-    }
-
-    this._hasSubscription = true;
-  }
-
-  unsubscribe() {
-    if (!this.hasSubscription) {
-      return CurrencyNotSubscribedError.withCode(this._code);
-    }
-    this._hasSubscription = false;
-  }
 }

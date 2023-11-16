@@ -26,10 +26,8 @@ export class SubscriptionListComponent implements OnInit, OnDestroy {
     this.subscription = this.currencyService.currenciesSubject.subscribe({
       next: (value) => {
         this.currencies = value;
-        console.log(value);
       },
       error: console.error,
-      complete: console.info,
     });
     this.currencyService.emitCurrency();
   }

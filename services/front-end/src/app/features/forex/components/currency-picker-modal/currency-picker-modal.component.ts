@@ -4,18 +4,18 @@ import {
   MatDialogRef,
 } from '@angular/material/dialog';
 import { CurrencyService } from '../../services/currency.service';
-import { Subscription, map } from 'rxjs';
+import { Subscription, find } from 'rxjs';
 import { FormControl } from '@angular/forms';
-import { currencyCodes } from 'src/app/common/constants/Constants';
 
 @Component({
   selector: 'app-currency-picker-modal',
   templateUrl: './currency-picker-modal.component.html',
   styleUrls: ['./currency-picker-modal.component.scss'],
 })
-export class CurrencyPickerModalComponent {
+export class CurrencyPickerModalComponent implements OnInit, OnDestroy {
 
   selectedCurrency = new FormControl('');
+  subscription: Subscription
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public currenciesList: string[],
@@ -23,10 +23,21 @@ export class CurrencyPickerModalComponent {
     private readonly currencyService: CurrencyService,
   ) {}
 
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+  }
+  
+  ngOnInit(): void {
+    this.subscription = this.currencyService.currenciesSubject.subscribe({
+      next: (currencies) => {
+        if (currencies.some(({ _code }) => _code === this.selectedCurrency.value)) this.onNoClick()
+      },
+    })
+  }
+
 
   onSubscribeCurrency() {
     this.currencyService.subscribeToCurrency(this.selectedCurrency.value);
-    this.onNoClick();
   }
 
   onNoClick(): void {

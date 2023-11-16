@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
 import { Currency } from '../../../models/currency';
 import { Subject, catchError, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -25,12 +25,13 @@ export class CurrencyService {
         { params }
       )
       .pipe(catchError(this.handleError.bind(this)))
-      .subscribe(
-        (res) => {
+      .subscribe({
+        next: (res) => {
           this.currencies = res.data;
           this.emitCurrency();
-        }
-      )
+        },
+        error: (err) => this.currenciesSubject.error(err),
+      })
   }
 
   emitCurrency() {
@@ -42,29 +43,37 @@ export class CurrencyService {
       code: currencyCode,
     })
     .pipe(catchError(this.handleError.bind(this)))
-    .subscribe((res: { data: Currency }) => {
-      this.currencies.push(res.data);
-      this.emitCurrency();
+    .subscribe({
+      next: (res: { data: Currency }) => {
+        this.currencies.push(res.data);
+        this.emitCurrency();
+      },
+      error: (err) => this.currenciesSubject.error(err),
     })
   }
 
   unsubscribeToCurrency(currencyCode: string) {
     this.httpClient.put(`${this.url}/currency/${currencyCode}`, {})
       .pipe(catchError(this.handleError.bind(this)))
-      .subscribe((res: { data: Currency }) => {
-        const elementPos = this.currencies.findIndex((currency) => currency._code === res.data._code);
-        this.currencies.splice(elementPos, 1);
-        this.emitCurrency();
-    });
+      .subscribe({
+        next: (res: { data: Currency }) => {
+          const elementPos = this.currencies.findIndex((currency) => currency._code === res.data._code);
+          this.currencies.splice(elementPos, 1);
+          this.emitCurrency();
+        },
+        error: (err) => this.currenciesSubject.error(err),
+      });
   }
 
   private handleError(error: any) {
     let errorMessage = 'An error occurred';
     // You can customize the error message based on the error object
     if (error.error instanceof ErrorEvent) {
+      
       errorMessage = `Error: ${error.error.message}`;
     } else {
-      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+      if (error?.error?.data) errorMessage = `Error Code: ${error.status}\nMessage: ${error.error.data}`;
+      else errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
     }
     this.snackBar.open(errorMessage, 'Close', {
       duration: 3000,

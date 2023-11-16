@@ -14,7 +14,7 @@
 Nestpaths are not considered due to the potential for excessive data in documents, depending on timeserie granularity and the application's age. Once a significant number of time series points are reached, considering pagination for historical points will be necessary. Modeling time series points as a relation to currencies simplifies this process.
 
 #### Caveats
-Deleting a time series point will not remove the relation from a currency because it is expected that they will be updated rather than removed.
+Deleting a time series point will not remove the relation from a currency because it is expected that they will be updated rather than removed, but it can be implemented.
 
 ### 2. API endpoint for retrieving the fetched forex data
 #### Implementation choices
@@ -27,16 +27,12 @@ Even though currency data is only relevant to a single component and does not ne
 
 ### 4. Caveats and possible improvements
 #### Caveats
-- If a currency has never been subscribed to before a user subscribes to it, the user will have to wait for a cron job to run before seeing currency values.
 - The FOREX API does not have an endpoint to return supported currencies, which means you might subscribe to a currency that will never have data.
 - The FOREX API has a call rate limit, so a lower frequency for the cron job should be considered.
 
 #### Improvements
-- To prevent the user from subscribing to currencies that do not yet have data, several methods could be implemented:
-1. Allow the user to subscribe only to currencies that are in database.
-2. Transform the service into a microservice that listens for events from a queue. This queue would receive two types of events: 'newCurrencyAdded' and 'timeElapsed'. These events would be sent to the queue, for instance, from the API, and would contain a payload with an array of currency codes. The event handlers would take care of fetching the new data for these currency codes.
 - To prevent the user from subscribing to unsupported currencies we could:
-1. Allow the user to subscribe only to currencies that are in database. (See 1. above)
-2. Use a queue to reschedule events. (See 2. above)
+1. Allow the user to subscribe only to currencies that are in database. 
+2. Use a queue to reschedule events. 
 3. Choose a better API than forex.
 - Improve responsiveness

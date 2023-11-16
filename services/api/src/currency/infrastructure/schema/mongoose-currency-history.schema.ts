@@ -9,7 +9,10 @@ const CurrencyHistorySchema = new Schema({
     open: Number,
     close: Number,
     high: Number,
-    low: Number
+    low: Number,
+  },
+  {
+    timestamps: true
   });
 
 CurrencyHistorySchema.index({ date: -1, code: 1 }, { unique: true, })

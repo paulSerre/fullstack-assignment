@@ -1,7 +1,7 @@
-import axios, { CreateAxiosDefaults, AxiosInstance } from "axios";
-import { CurrencyHistory, ForexError } from "../../currency-history/domain";
-import ConversionAPI from "../template";
-
+import axios, { AxiosInstance, CreateAxiosDefaults } from 'axios';
+import ConversionAPI from '../../template';
+import { CurrencyHistory } from '@app/currency/domain/models';
+import ForexError from '../error';
 
 declare var ALPHAVANTAGE_API_KEY: string;
 
@@ -35,7 +35,7 @@ export class AlphavantageAPI implements ConversionAPI {
             const timeSeries = data['Time Series FX (Daily)'];
             const transformedData: Record<string, CurrencyHistory> = {};
             for (const date in timeSeries) {
-                const ts = CurrencyHistory.fromPrimitives({
+                const ts = CurrencyHistory.create({
                     code: to,
                     date: date,
                     open: parseFloat(timeSeries[date]["1. open"]),
@@ -48,7 +48,7 @@ export class AlphavantageAPI implements ConversionAPI {
             return transformedData;
         } catch (e) {
             ForexError.withCode(to);
-            return {};
+            return {}
         }
     }
     

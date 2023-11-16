@@ -1,6 +1,5 @@
 import { Nullable } from "src/utils";
 import { Currency } from "../models/currency";
-import { CurrencyHistory } from "../models";
 
 export interface ICurrencyRepository {
   subscribe(currency: Currency): Promise<void>;

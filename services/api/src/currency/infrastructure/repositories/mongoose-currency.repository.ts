@@ -1,6 +1,7 @@
 import { Currency, ICurrencyRepository } from "@app/currency/domain";
 import { Nullable } from "@app/utils";
 import CurrencyModel from '@app/currency/infrastructure/schema/mongoose-currency.schema'
+import CurrencyHistoryModel from "../schema/mongoose-currency-history.schema";
 
 export class MongooseCurrencyRepository implements ICurrencyRepository {
   private toDomain(currencyDB) {
@@ -23,7 +24,10 @@ export class MongooseCurrencyRepository implements ICurrencyRepository {
 
   async subscribe(currency: Currency): Promise<void> {
     const mongooseCurrency = this.fromDomain(currency);
-    await CurrencyModel.create(mongooseCurrency);
+    await Promise.all([ 
+      CurrencyHistoryModel.insertMany(Object.values(currency.history)),
+      CurrencyModel.create(mongooseCurrency)
+    ]);
   }
 
   async findAllSubscriptions(history: boolean = false): Promise<Currency[]> {

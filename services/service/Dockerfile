@@ -8,7 +8,7 @@ WORKDIR /app
 
 # Install the dependenciess
 ENV MONGODB_URI="mongodb://root:pass@home-assignment-db:27017/testdb?authSource=admin"
-ENV ALPHAVANTAGE_API_KEY="D6EIAVJ29RGHA4LG"
+ENV ALPHAVANTAGE_API_KEY="BIB11DF9ITV6EYUM"
 RUN yarn install
 RUN yarn build
 

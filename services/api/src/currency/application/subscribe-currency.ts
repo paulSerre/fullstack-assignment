@@ -1,9 +1,12 @@
+import { AlphavantageAPI } from "@app/utils";
 import {
   Currency,
-  CurrencyAlreadySubscribedError,
   ICurrencyRepository,
 } from "../domain";
 import { MongooseCurrencyRepository } from "../infrastructure";
+import { CurrencyHistory } from "../domain/models";
+
+const exchangeApi = new AlphavantageAPI();
 
 export class SubscribeCurrency {
   private currencyRepository: ICurrencyRepository;
@@ -20,7 +23,9 @@ export class SubscribeCurrency {
       return currency;
     }
 
-    const newCurrency = Currency.create({ code: currencyReq.code });
+    // Initialize timeseries
+    const history = await exchangeApi.getTimeseries('EUR', currencyReq.code);
+    const newCurrency = Currency.create({ code: currencyReq.code, history: history });
     await this.currencyRepository.subscribe(newCurrency as Currency);
     return newCurrency;
   }
